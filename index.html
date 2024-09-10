@@ -1,0 +1,260 @@
+
+<!-- saved from url=(0029)https://dreambooth.github.io/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>MF-V2A</title>
+<link href="./mffoley/style.css" rel="stylesheet">
+</head>
+
+<body inject_svd="true">
+<div class="content"> 
+    <h1 style="display: flex; align-items: center; justify-content: space-around;">
+        <!-- <span><img src="foleycrafter/images/foleycrafter.png" alt="logo" style="height: 136px; margin: 0px 0px; padding: 0px 0px;"></span> -->
+        <strong style="margin: auto 0px; padding: auto 0px;">MF-V2A: Video-to-Audio Generation with Multifaceted Video Features</strong>
+    </h1>
+    <p id="authors">
+        <a>Zhenying Fang<sup>1,3 *</sup></a> 
+        <a>Zehua Chen<sup>2,3 *</sup></a> 
+        <a>Fan Bao<sup>3</sup></a> 
+        <a>Wenbo Hu<sup>1 †</sup></a> 
+        <br>
+        <a>Richang Hong<sup>1</sup></a> 
+        <a>Jun Zhu<sup>2 †</sup></a> 
+        <br>
+        <span style="font-size: 18px">
+            <sup>1</sup>Hefei University of Technology &nbsp;&nbsp;&nbsp;
+            <sup>2</sup>Tsinghua University &nbsp;&nbsp;&nbsp;
+            <sup>3</sup>Shengshu AI &nbsp;&nbsp;&nbsp;
+            <br>
+            * Equal contribution. Work done during an internship at Shengshu AI.
+            <br>
+            †Corresponding author
+        </span>
+    </p>
+</div>
+
+<div class="content">
+<h2 style="text-align:center;"><b>Abstract</b></h2>
+<p>
+    Video-to-audio generation aims to produce high-quality audio that aligns with the content of silent videos. However, most existing methods focus primarily on the impact of a single semantic condition on audio generation, neglecting the potential of leveraging multifaceted features. In this paper, we propose a novel video-to-audio generation framework called MF-V2A, which utilizes multifaceted features to enhance audio generation performance. Given a silent video, our approach extracts multifaceted features using feature extractors that capture different aspects of the video content. These features are then employed as conditional controls, integrated into a latent diffusion model through our proposed multifaceted feature fusion module to generate the corresponding audio for the silent video. Extensive objective and subjective experiments demonstrate that our approach outperforms state-of-the-art methods in terms of both audio quality and relevance to the video content.
+</p>
+</div>
+
+<div class="content">
+<h2 style="text-align:center;"><b>Method</b></h2>
+<img src="mffoley/images/overview.png" alt="overview of MF-Foley" style="width:100%;">
+<br>
+<br>
+    The structure of the proposed MF-V2A framework is presented in the figure. On the left, the overall architecture of MF-V2A is illustrated, where multifaceted features are first extracted from the input silent video using multiple feature extractors. These features are then employed by the Multifaceted Feature Fusion (MFF) module to conditionally guide the LDM. The right side of the figure details the design of the MFF module, which computes cross-attention between each extracted feature and the input latent vectors, followed by a weighted averaging to produce the final output latent vectors.
+</div>
+
+<div class="content">
+<h2 style="text-align:center;"><b>Samples</b></h2>
+
+<div class="gallery">
+
+    <h3>Audio Synthesis for VGGSound Videos</h3>
+
+    <h4>Sample 1</h4>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/01/01_gt.mp4">
+            </video>
+            <p>Ground Truth</p>
+        </div>
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/01/01_difffoley.mp4">
+            </video>
+            <p>Diff-Foley</p>
+        </div>
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/01/01_foleycrafter.mp4">
+            </video>
+            <p>FoleyCrafter</p>
+        </div>
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/01/01_v2amapper.mp4">
+            </video>
+            <p>V2A_Mapper</p>
+        </div>
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/01/01_v2aldm.mp4">
+            </video>
+            <p>VTA-LDM</p>
+        </div>
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/01/01_mffoley.mp4">
+            </video>
+            <p>Ours</p>
+        </div>
+    </div>
+
+    <h4>Sample 2</h4>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/02/02_gt.mp4">
+            </video>
+            <p>Ground Truth</p>
+        </div>
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/02/02_difffoley.mp4">
+            </video>
+            <p>Diff-Foley</p>
+        </div>
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/02/02_foleycrafter.mp4">
+            </video>
+            <p>FoleyCrafter</p>
+        </div>
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/02/02_v2amapper.mp4">
+            </video>
+            <p>V2A_Mapper</p>
+        </div>
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/02/02_vtaldm.mp4">
+            </video>
+            <p>VTA-LDM</p>
+        </div>
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/02/02_mffoley.mp4">
+            </video>
+            <p>Ours</p>
+        </div>
+    </div>
+
+    <h4>Sample 3</h4>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/03/03_gt.mp4">
+            </video>
+            <p>Ground Truth</p>
+        </div>
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/03/03_difffoley.mp4">
+            </video>
+            <p>Diff-Foley</p>
+        </div>
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/03/03_foleycrafter.mp4">
+            </video>
+            <p>FoleyCrafter</p>
+        </div>
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/03/03_v2amapper.mp4">
+            </video>
+            <p>V2A_Mapper</p>
+        </div>
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/03/03_vtaldm.mp4">
+            </video>
+            <p>VTA-LDM</p>
+        </div>
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/03/03_mffoley.mp4">
+            </video>
+            <p>Ours</p>
+        </div>
+    </div>
+
+
+    <h4>Sample 4</h4>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/04/04_gt.mp4">
+            </video>
+            <p>Ground Truth</p>
+        </div>
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/04/04_difffoley.mp4">
+            </video>
+            <p>Diff-Foley</p>
+        </div>
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/04/04_foleycrafter.mp4">
+            </video>
+            <p>FoleyCrafter</p>
+        </div>
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/04/04_v2amapper.mp4">
+            </video>
+            <p>V2A_Mapper</p>
+        </div>
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/04/04_vtaldm.mp4">
+            </video>
+            <p>VTA-LDM</p>
+        </div>
+        <div style="width: 32%; text-align: center;">
+            <video style="width: 100%;" controls>
+                <source src="mffoley/videos/output/vggsound/04/04_mffoley.mp4">
+            </video>
+            <p>Ours</p>
+        </div>
+    </div>
+
+
+
+    <h3>Audio Synthesis for Sora Videos</h3>
+
+    <div class="row">
+        <div class="video-container">
+            <video class="video" controls>
+                <source src="mffoley/videos/output/sora/001.mp4">
+            </video>
+        </div>
+        <div class="video-container">
+            <video class="video" controls>
+                <source src="mffoley/videos/output/sora/002.mp4">
+            </video>
+        </div>
+        <div class="video-container">
+            <video class="video" controls>
+                <source src="mffoley/videos/output/sora/003.mp4">
+            </video>
+        </div>
+        <div class="video-container">
+            <video class="video" controls>
+                <source src="mffoley/videos/output/sora/004.mp4">
+            </video>
+        </div>
+    </div>
+
+
+</div>
+
+<div id="popupMenu" style="display: none;"></div>
+
+<div style="text-align: center; margin-top: 20px;"></div>
+    <p>Template inspired by <a href="https://foleycrafter.github.io/" target="_blank">FoleyCrafter</a>.</p>
+</div>
+
+</body>
+</html>
