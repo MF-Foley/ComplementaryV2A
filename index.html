@@ -10,7 +10,7 @@
 <div class="content"> 
     <h1 style="display: flex; align-items: center; justify-content: space-around;">
         <!-- <span><img src="foleycrafter/images/foleycrafter.png" alt="logo" style="height: 136px; margin: 0px 0px; padding: 0px 0px;"></span> -->
-        <strong style="margin: auto 0px; padding: auto 0px;">MF-V2A: Video-to-Audio Generation with Multifaceted Video Features</strong>
+        <strong style="margin: auto 0px; padding: auto 0px;">ComplementaryV2A: Video-to-Audio Generation with Complementary Video Features</strong>
     </h1>
     <p id="authors">
         <a>Zhenying Fang<sup>1,3 *</sup></a> 
@@ -36,7 +36,7 @@
 <div class="content">
 <h2 style="text-align:center;"><b>Abstract</b></h2>
 <p>
-    Video-to-audio generation aims to produce high-quality audio that aligns with the content of silent videos. However, most existing methods focus primarily on the impact of a single semantic condition on audio generation, neglecting the potential of leveraging multifaceted features. In this paper, we propose a novel video-to-audio generation framework called MF-V2A, which utilizes multifaceted features to enhance audio generation performance. Given a silent video, our approach extracts multifaceted features using feature extractors that capture different aspects of the video content. These features are then employed as conditional controls, integrated into a latent diffusion model through our proposed multifaceted feature fusion module to generate the corresponding audio for the silent video. Extensive objective and subjective experiments demonstrate that our approach outperforms state-of-the-art methods in terms of both audio quality and relevance to the video content.
+    Video-to-audio (V2A) generation aims to produce high-quality audio that aligns with the content of silent videos. However, most existing methods focus primarily on the impact of a single semantic condition on audio generation, neglecting the potential of leveraging complementary features. In this paper, we propose a novel V2A framework, ComplementaryV2A, which utilizes diverse while complementary features to enhance the V2A performance. Given a silent video, our approach first extracts features with multiple pre-trained extractors, describing selected aspects of the video content. Then, these features are employed as conditions and integrated into a latent diffusion model, through our proposed complementary feature fusion module to generate the corresponding audio for silent video. Comprehensive objective and subjective experiments conducted on the benchmark dataset VGGSound demonstrate that our approach outperforms state-of-the-art methods in terms of both audio quality (e.g., FAD 0.83) and relevance to video content.
 </p>
 </div>
 
@@ -45,7 +45,7 @@
 <img src="mffoley/images/overview.png" alt="overview of MF-Foley" style="width:100%;">
 <br>
 <br>
-    The structure of the proposed MF-V2A framework is presented in the figure. On the left, the overall architecture of MF-V2A is illustrated, where multifaceted features are first extracted from the input silent video using multiple feature extractors. These features are then employed by the Multifaceted Feature Fusion (MFF) module to conditionally guide the LDM. The right side of the figure details the design of the MFF module, which computes cross-attention between each extracted feature and the input latent vectors, followed by a weighted averaging to produce the final output latent vectors.
+    The structure of the proposed ComplementaryV2A framework. On the left, the overall architecture of ComplementaryV2A is illustrated, where complementary features are first extracted from the input silent video using multiple feature extractors. These features are then employed by the Complementary Feature Fusion (CFF) module to conditionally guide the LDM. The right side of the figure details the design of the CFF module, which computes cross-attention between each extracted feature and the input latent vectors, followed by a weighted averaging to produce the final output latent vectors.
 </div>
 
 <div class="content">
